@@ -1,5 +1,5 @@
 # gerenciamento de memoria da JVM
-A JVM é uma máquina virtual usada para executar aplicações Java e outros que são compiladas para o bytecode do Java(Groovy, Jython, JRuby, Scala). Como uma máquina físíca, a JVM necessita de recursos de processamento e memória. No caso da CPU, o próprio sistema operacional pode conceder tempo de processamento para a JVM diretamente como um processo comum. Já quando falamos em memória, a JVM faz um gerenciamento interno para garantir o isolamento em relação a memória do sistema operacional.
+A JVM é uma máquina virtual usada para executar aplicações Java e também outras linguagens que são compiladas para o bytecode do Java (Groovy, Jython, JRuby, Scala). Como uma máquina físíca, a JVM necessita de recursos de processamento e memória. No caso da CPU, o próprio sistema operacional pode conceder tempo de processamento para a JVM diretamente como um processo comum. Já quando falamos em memória, a JVM faz um gerenciamento interno para garantir o isolamento em relação a memória do sistema operacional.
 
 Na JVM, as variáveis locais e referencias de vida curta são colocar na stack memory e os objetos e classes na heap memory.
 
