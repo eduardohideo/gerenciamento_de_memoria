@@ -20,18 +20,18 @@ A Old Generation é a área de heap onde estão os objetos mais antigos, esse es
 A PermGen é o espaço de memória onde estão os objetos imutáveis. Objetos imutáveis não podem ser modificados e permitem ser reusados várias vezes. Objetos na PermGen são limpos no GC Major. A partir do Java 8 o PermGen passou a se chamar Metaspace e tem por padrão uso direto da memória do sistema.
 
 ## Configurações de Memória:
--Xmx: indica a quantidade de mémória maxima usada para o OG e o NG.
--Xms: indica a quantidade de memória inicial usada para o OG e o NG.
--XX:MaxPermGen:indica a quantidade de memória maxima usada para a PermGen. A partir do Java 8, a PermGen foi substituida pelo metaspace e o máximo de memória padrão do Metaspace é ilimitado, sendo assim, limitado pela memória do SO.
+**-Xmx**: indica a quantidade de mémória maxima usada para o OG e o NG.  
+**-Xms**: indica a quantidade de memória inicial usada para o OG e o NG.  
+**-XX:MaxPermGen**:indica a quantidade de memória maxima usada para a PermGen. A partir do Java 8, a PermGen foi substituida pelo metaspace e o máximo de memória padrão do Metaspace é ilimitado, sendo assim, limitado pela memória do SO.  
 
 ## Configurações da Garbage Collection
 Como foi visto, o GC Major causa uma indisponibilidade na aplicação e é necessária uma maior atenção nessa parte. 
 Existem 5 estratégias para executar o GC
-** Serial GC (-XX:+UseSerialGC) **: GC é executado sequencialmente (uma Thread).
-** Parallel GC (-XX:+UseParallelGC) **: GC executado com paralelismo na GC Minor e sequenciamente na GC Major reduzindo o tempo da coleta.
-** Parallel Old GC (-XX:+UseParallelOldGC) **: GC executado com paralelismo na GC Minor e Major.
-** Concurrenct Mark Sweep GC(CMS) (-XX:+UseConcMarkSweepGC) **: Na GC Minor, ele se comporta como o Parallel GC. Na GC Major, parte do processo de marcar os objetos que ainda estão sendo utilizados é feito enquanto a aplicação está sendo executada, reduzindo o tempo da coleta.
-** G1 GC (-XX:+useG1GC) **: disponível a partir da versão 7 do Java. Não existe o conceito de OG ou de NG. É dividido o heap em espaços iguais e é limpo o espaço com menos objetos vivos. Espaços com menos objetos vivos são mais fáceis de serem limpos, objetos vivos necessitam de serem copiados para outros espaços e esse processo toma um tempo considerável. A tarefa de selecionar os objetos vivos é feita como no CMS, em paralelismo enquanto a aplicaço está sendo executada. No Java 9 e 10 é usada essa estratégia por padrão.
+**Serial GC (-XX:+UseSerialGC)**: GC é executado sequencialmente (uma Thread).  
+**Parallel GC (-XX:+UseParallelGC)**: GC executado com paralelismo na GC Minor e sequenciamente na GC Major reduzindo o tempo da coleta.  
+**Parallel Old GC (-XX:+UseParallelOldGC)**: GC executado com paralelismo na GC Minor e Major.  
+**Concurrenct Mark Sweep GC(CMS) (-XX:+UseConcMarkSweepGC)**: Na GC Minor, ele se comporta como o Parallel GC. Na GC Major, parte do processo de marcar os objetos que ainda estão sendo utilizados é feito enquanto a aplicação está sendo executada, reduzindo o tempo da coleta.  
+**G1 GC (-XX:+useG1GC)**: disponível a partir da versão 7 do Java. Não existe o conceito de OG ou de NG. É dividido o heap em espaços iguais e é limpo o espaço com menos objetos vivos. Espaços com menos objetos vivos são mais fáceis de serem limpos, objetos vivos necessitam de serem copiados para outros espaços e esse processo toma um tempo considerável. A tarefa de selecionar os objetos vivos é feita como no CMS, em paralelismo enquanto a aplicaço está sendo executada. No Java 9 e 10 é usada essa estratégia por padrão.  
 
 ## Possíveis problemas com memória
 Problemas com memória são evidenciados quando a aplicação lança OutOfMemory Exception. Também ocorre quando o sistema passa a usar o swap. O swap é um espaço de disco reservado para auxiliar a memória do sistema no caso dela se esgorar, como o disco é lento a aplicaço que usa swap pode apresentar lentidão.
