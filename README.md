@@ -34,7 +34,7 @@ Existem 5 estratégias para executar o GC
 **G1 GC (-XX:+useG1GC)**: disponível a partir da versão 7 do Java. Não existe o conceito de OG ou de NG. É dividido o heap em espaços iguais e é limpo o espaço com menos objetos vivos. Espaços com menos objetos vivos são mais fáceis de serem limpos, objetos vivos necessitam de serem copiados para outros espaços e esse processo toma um tempo considerável. A tarefa de selecionar os objetos vivos é feita como no CMS, em paralelismo enquanto a aplicaço está sendo executada. No Java 9 e 10 é usada essa estratégia por padrão.  
 
 ## Possíveis problemas com memória
-Problemas com memória são evidenciados quando a aplicação lança OutOfMemory Exception. Também ocorrem quando o sistema passa a usar o swap. O swap é um espaço de disco reservado para auxiliar a memória do sistema no caso dela se esgorar, como o disco é lento a aplicaço que usa swap pode apresentar lentidão.
+Problemas com memória são evidenciados quando a aplicação lança OutOfMemory Exception. Também ocorrem quando o sistema passa a usar o swap. O swap é um espaço de disco reservado para auxiliar a memória do sistema no caso dela se esgotar, como o disco é lento a aplicaço que usa swap pode apresentar lentidão.
 
 ### java.lang.OutOfMemoryError: PermGen space
 Esse erro ocorre quando a PermGen esgota. Aplicações que importam muitas APIs acabam consumindo bastante memória da Permgen e esgotando o recurso da máquina. Uma solução para esse problema é aumentar a PermGen ou migrar para o Java 8 e usar o metaspace.
